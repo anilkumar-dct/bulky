@@ -30,16 +30,12 @@ namespace Bulkyweb.Controllers
             if (ModelState.IsValid) {
                 _context.categories.Add(category);
                 _context.SaveChanges();
-<<<<<<< HEAD
-=======
                 TempData["success"] = "Category Created Successfully";
->>>>>>> 9781dd6 (CRUD operation , update and delete are added Add project files.)
                 return RedirectToAction("Category");
             }
             return View();
           
         }
-<<<<<<< HEAD
         public IActionResult Edit()
         {
             return View();
@@ -54,7 +50,6 @@ namespace Bulkyweb.Controllers
         //    _context.categories.Add(category);
         //    _context.SaveChanges();
         //    return RedirectToAction("Category");
-=======
 
         //Edit Category Controller 
         public IActionResult Edit(int? id)
@@ -109,7 +104,6 @@ namespace Bulkyweb.Controllers
         //    _context.SaveChanges();
         //    return RedirectToAction("Category");
            
->>>>>>> 9781dd6 (CRUD operation , update and delete are added Add project files.)
         //}
     }
 }

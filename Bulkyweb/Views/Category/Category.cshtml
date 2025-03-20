@@ -2,67 +2,47 @@
     ViewData["Title"] = "Category";
 }
 @model List<Category>
-<<<<<<< HEAD
-=======
 
->>>>>>> 9781dd6 (CRUD operation , update and delete are added Add project files.)
 <div class="Container">
     <div class="row pt-4 pb-3">
-     <div class="col-6">
-         <h2 class="text-primary">
-             Category List
-         </h2>
-     </div>
-        <div class="col-6 text-end ">
+        <div class="col-6">
+            <h2 class="text-primary">Category List</h2>
+        </div>
+        <div class="col-6 text-end">
             <a class="btn btn-primary" asp-controller="Category" asp-action="CreateCategory">
-                <i class="bi bi-plus-circle  "></i> Create New Category
+                <i class="bi bi-plus-circle"></i> Create New Category
             </a>
         </div>
-
     </div>
-    <div class="table-responsive" >
-      
+
+    <div class="table-responsive">
         <table class="table table-bordered table-striped">
             <thead>
                 <tr>
                     <th>Category Name</th>
                     <th>Display Order</th>
-                    <th></th>
+                    <th>Actions</th>
                 </tr>
             </thead>
-
             <tbody>
-
-                @{
-                    foreach (var data in Model.OrderBy(u => u.DisplayOrder))
-                    {
-                        <tr>
-
-                            <td>@data.Name </td>
-                            <td>@data.DisplayOrder</td>
-                           <td>
-                                <div class="w-75 btn-group d-flex flex-wrap justify-content-center flex-wrap justify-content-center" role="group">
-<<<<<<< HEAD
-                                    <a class="btn btn-primary rounded-2 btn-sm m-1" asp-controller="Category" asp-action="Edit">
-                                        <i class="bi bi-pencil-square"></i>
-                                 Edit</a>
-                                    <a class="btn btn-danger rounded-2 btn-sm m-1" asp-controller="Category" asp-action="Delete">
-=======
-                                    <a class="btn btn-primary rounded-2 btn-sm m-1"  asp-controller="Category" asp-action="Edit" asp-route-id="@data.Id">
-                                        <i class="bi bi-pencil-square"></i>
-                                 Edit</a>
-                                    <a class="btn btn-danger rounded-2 btn-sm m-1" asp-controller="Category" asp-action="Delete" asp-route-id="@data.Id">
->>>>>>> 9781dd6 (CRUD operation , update and delete are added Add project files.)
-                                        <i class="bi bi-trash3"></i> Delete
-                                    </a>
-                                </div>
-                            </td>
-                        </tr>
-                    }
+                @foreach (var data in Model.OrderBy(u => u.DisplayOrder))
+                {
+                    <tr>
+                        <td>@data.Name</td>
+                        <td>@data.DisplayOrder</td>
+                        <td>
+                            <div class="w-75 btn-group d-flex justify-content-center">
+                                <a class="btn btn-primary rounded-2 btn-sm m-1" asp-controller="Category" asp-action="Edit" asp-route-id="@data.Id">
+                                    <i class="bi bi-pencil-square"></i> Edit
+                                </a>
+                                <a class="btn btn-danger rounded-2 btn-sm m-1" asp-controller="Category" asp-action="Delete" asp-route-id="@data.Id">
+                                    <i class="bi bi-trash3"></i> Delete
+                                </a>
+                            </div>
+                        </td>
+                    </tr>
                 }
             </tbody>
-
         </table>
     </div>
-
 </div>
