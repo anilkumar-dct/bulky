@@ -10,35 +10,30 @@
             </div>
         </div>
     </div>
-    <div class="card-body">
+    <div class="card-body p-4">
         <form method="post">
-            @* <form method="post" asp-action="CreateCategoryForm" asp-controller="Category"> *@
-            <div class="border p-3 mt-4">
-                <div class="row pb-3">
-
-                    <hr />
-                </div>
-                @* <div asp-validation-summary="ModelOnly"></div> *@
-                <div class="mb-3">
-                    <lable>Category Name</lable>
-                    <input asp-for="Name" type="text" class="form-control rounded-3" />
+            <div class="border p-3 rounded">
+               
+                <div class="form-floating mb-3">
+                    <input asp-for="Name" type="text" id="categoryName" class="form-control border-0 shadow" placeholder="Category Name">
+                    <label asp-for="Name" for="categoryName">Category Name</label>
                     <span asp-validation-for="Name" class="text-danger"></span>
                 </div>
-                <div class="mb-3">
-                    <lable>Display Order</lable>
-                    <input asp-for="DisplayOrder" type="number" class="form-control rounded-3" />
+               
+                <div class="form-floating mb-3">
+                    <input asp-for="DisplayOrder" asp-for="Name" type="number" id="displayOrder" class="form-control border-0 shadow" placeholder="Display Order">
+                    <label asp-for="DisplayOrder" for="displayOrder">Display Order</label>
                     <span asp-validation-for="DisplayOrder" class="text-danger"></span>
                 </div>
-                <div class="row ">
+              
+                <div class="row">
                     <div class="col-6 col-md-3">
-                        <button class="btn btn-primary rounded-3 w-100">Create</button>
+                        <button type="submit" class="btn btn-dark rounded-3 w-100">Create</button>
                     </div>
                     <div class="col-6 col-md-3">
-                        <a asp-action="Category" asp-controller="Category" class="btn btn-outline-secondary rounded-3  w-100 text-decoration-none">Back</a>
+                        <a asp-action="Category" asp-controller="Category" class="btn btn-outline-secondary rounded-3 w-100 text-decoration-none">Back to List</a>
                     </div>
-
                 </div>
-
             </div>
         </form>
     </div>
