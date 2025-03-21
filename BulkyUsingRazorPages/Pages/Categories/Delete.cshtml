@@ -1,0 +1,43 @@
+﻿@page
+@model BulkyUsingRazorPages.Pages.Categories.DeleteModel
+
+<form method="post">
+    @* below <input> parameter passing is given for the 'DeleteAndPost'' action  *@
+    @* and requird when you are using your own provided path  *@
+    @* and not using inbuilt post method because inbuilt method provide you the path for the action already in case any  *@
+    @* changes such as action name is diffenent so use shortHandNotation *@
+    <input type="hidden" asp-for="category.Id" /> 
+    @* <form method="post" asp-action="CreateCategory" asp-controller="Category"> *@
+    <div class="border p-3 mt-4">
+        <div class="row pb-3">
+            <h2 class="text-primary">Delete Category</h2>
+            <hr />
+        </div>
+        @* <div asp-validation-summary="ModelOnly"></div> *@
+        <div class="mb-3">
+            <lable>Category Name</lable>
+            <input asp-for="category.Name" type="text" class="form-control rounded-3" />
+            <span asp-validation-for="category.Name" class="text-danger"></span>
+        </div>
+        <div class="mb-3">
+            <lable>Display Order</lable>
+            <input asp-for="category.DisplayOrder" type="number" class="form-control rounded-3" />
+            <span asp-validation-for="category.DisplayOrder" class="text-danger"></span>
+        </div>
+        <div class="row ">
+            <div class="col-6 col-md-3">
+                <button class="btn btn-danger rounded-3 w-100" asp-for="Id">Delete</button>
+            </div>
+            <div class="col-6 col-md-3">
+                <a asp-page="/categories/index" class="btn btn-outline-secondary rounded-3  w-100 text-decoration-none">Back</a>
+            </div>
+
+        </div>
+
+    </div>
+</form>
+@section Scripts {
+    @{
+        <partial name="_ValidationScriptsPartial" />
+    }
+} 

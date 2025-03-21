@@ -5,9 +5,11 @@ namespace Bulkyweb.Data
 {
     public class ApplicationDbContext: DbContext
     {
-        public ApplicationDbContext(DbContextOptions<ApplicationDbContext>options):base(options) 
+        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
+     : base(options) // Passes database configuration options to the DbContext base class
         {
-            
+            // Constructor for ApplicationDbContext
+            // options contain database settings like connection string and provider
         }
         public DbSet<Category>   categories { get; set; }//this single line is used to create table using entity framework.
 
