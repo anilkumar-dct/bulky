@@ -1,0 +1,46 @@
+﻿@{
+    ViewData["Title"] = "Create Category";
+}
+@model Category
+<div class="card shadow border-0 mt-4">
+    <div class="card-header bg-secondary bg-gradient">
+        <div class="row">
+            <div class="col-12 text-center">
+                <h2 class="text-white p-2">Create Category</h2>
+            </div>
+        </div>
+    </div>
+    <div class="card-body p-4">
+        <form method="post">
+            <div class="border p-3 rounded">
+               
+                <div class="form-floating mb-3">
+                    <input asp-for="Name" type="text" id="categoryName" class="form-control border-0 shadow" placeholder="Category Name">
+                    <label asp-for="Name" for="categoryName">Category Name</label>
+                    <span asp-validation-for="Name" class="text-danger"></span>
+                </div>
+               
+                <div class="form-floating mb-3">
+                    <input asp-for="DisplayOrder" asp-for="Name" type="number" id="displayOrder" class="form-control border-0 shadow" placeholder="Display Order">
+                    <label asp-for="DisplayOrder" for="displayOrder">Display Order</label>
+                    <span asp-validation-for="DisplayOrder" class="text-danger"></span>
+                </div>
+              
+                <div class="row">
+                    <div class="col-6 col-md-3">
+                        <button type="submit" class="btn btn-dark rounded-3 w-100">Create</button>
+                    </div>
+                    <div class="col-6 col-md-3">
+                        <a asp-action="Category" asp-controller="Category" class="btn btn-outline-secondary rounded-3 w-100 text-decoration-none">Back to List</a>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts{
+    @{
+        <partial name="_ValidationScriptsPartial" />
+    }
+}
