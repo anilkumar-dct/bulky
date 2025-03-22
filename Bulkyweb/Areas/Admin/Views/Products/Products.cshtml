@@ -1,0 +1,65 @@
+﻿@using Bulky.Models
+@{
+    ViewData["Title"] = "Products";
+}
+@model List<Products>
+
+<div class="card shadow border-0 mt-4 mb-8">
+    <div class="card-header bg-secondary bg-gradient">
+        <div class="row">
+            <div class="col-12 text-center">
+                <h2 class="text-white p-2">Products List</h2>
+            </div>
+        </div>
+    </div>
+    <div class="card-body p-4">
+        
+            <div class="row  pb-3">
+                <div class="col-12 text-end">
+                <a class="btn btn-primary" asp-area="Admin" asp-controller="Products" asp-action="AddProduct">
+                    <i class="bi bi-plus-circle"></i> Create New Product
+                </a>
+                </div>
+            </div>
+
+            <div class="table-responsive">
+                <table class="table table-bordered table-striped">
+                    <thead>
+                        <tr>
+                            <th>Products Title</th>
+                            <th>Author</th>
+                        <th>ISBN</th>
+                        <th>Price</th>
+                        <th>Category</th>
+                        <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var data in Model.OrderBy(u => u.Description))
+                        {
+                            <tr>
+                                <td>@data.Title</td>
+                            <td>@data.Author</td>
+                            <td>@data.ListPrice</td>
+                            <td>@data.ISBN</td>
+                            <td></td>
+                                <td>
+                                    <div class="w-75 btn-group d-flex justify-content-center">
+                                        <a class="btn btn-primary rounded-2 btn-sm m-1" asp-controller="Products" asp-action="Edit" asp-route-id="@data.Id">
+                                            <i class="bi bi-pencil-square"></i> Edit
+                                        </a>
+                                        <a class="btn btn-danger rounded-2 btn-sm m-1" asp-controller="Products" asp-action="Delete" asp-route-id="@data.Id">
+                                            <i class="bi bi-trash3"></i> Delete
+                                        </a>
+                                    </div>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+   
+</div>
+
+

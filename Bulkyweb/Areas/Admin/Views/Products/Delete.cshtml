@@ -1,0 +1,87 @@
+﻿@using Bulky.Models
+@{
+    ViewData["Title"] = "Delete Products";
+}
+@model Products
+<div class="card shadow border-0 mt-4 mb-8">
+    <div class="card-header bg-secondary bg-gradient">
+        <div class="row">
+            <div class="col-12 text-center">
+                <h2 class="text-white p-2">Delete Products</h2>
+            </div>
+        </div>
+    </div>
+    <div class="card-body p-4">
+        <form asp-controller="Products" asp-action="DeleteAndPost">
+            @* below <input> parameter passing is given for the 'DeleteAndPost'' action  *@
+            @* and requird when you are using your own provided path  *@
+            @* and not using inbuilt post method because inbuilt method provide you the path for the action already in case any  *@
+            @* changes such as action Title is diffenent so use shortHandNotation *@
+            <input type="hidden" asp-for="Id" />
+            @* <form method="post" asp-action="CreateCategory" asp-controller="Products"> *@
+            <div class="border p-3 mt-4">
+                @* <div asp-validation-summary="ModelOnly"></div> *@
+
+                <div class="form-floating mb-3">
+                    <input asp-for="Title" type="text" id="categoryName" class="form-control border-0 shadow" placeholder="Products Title">
+                    <label asp-for="Title" for="categoryName">Products Title</label>
+                  
+                </div>
+
+                <div class="form-floating mb-3">
+                    <input asp-for="Description" type="text" id="Description" class="form-control border-0 shadow" placeholder="Description">
+                    <label asp-for="Description" for="Description">Description</label>
+                   
+                </div>
+                <div class="form-floating mb-3">
+                    <input asp-for="ISBN" type="text" id="Description" class="form-control border-0 shadow" placeholder="ISBN">
+                    <label asp-for="ISBN" for="Description">ISBN</label>
+
+                </div>
+                <div class="form-floating mb-3">
+                    <input asp-for="Author" type="text" id="Description" class="form-control border-0 shadow" placeholder="Author">
+                    <label asp-for="Author" for="Description">Author</label>
+                   
+                </div>
+                <div class="form-floating mb-3">
+                    <input asp-for="ListPrice" type="number" id="Description" class="form-control border-0 shadow" placeholder="ListPrice">
+                    <label asp-for="ListPrice" for="Description">ListPrice</label>
+                  
+                </div>
+                <div class="form-floating mb-3">
+                    <input asp-for="Price" type="number" id="Description" class="form-control border-0 shadow" placeholder="Price">
+                    <label asp-for="Price" for="Description">Price</label>
+                   
+                </div>
+                <div class="form-floating mb-3">
+                    <input asp-for="Price50" type="number" id="Description" class="form-control border-0 shadow" placeholder="Price50">
+                    <label asp-for="Price50" for="Description">Price50</label>
+                
+                </div>
+                <div class="form-floating mb-3">
+                    <input asp-for="Price100" type="number" id="Description" class="form-control border-0 shadow" placeholder="Price100">
+                    <label asp-for="Price100" for="Description">Price100</label>
+                 
+                </div>
+
+                <div class="row ">
+                    <div class="col-6 col-md-3">
+                        <button class="btn btn-danger rounded-3 w-100" asp-for="Id">Delete</button>
+                    </div>
+                    <div class="col-6 col-md-3">
+                        <a asp-action="Products" asp-controller="Products" class="btn btn-outline-secondary rounded-3  w-100 text-decoration-none">Back</a>
+                    </div>
+
+                </div>
+
+            </div>
+        </form>
+    </div>
+</div>
+
+
+@section Scripts {
+    @{
+        <partial Title="_ValidationScriptsPartial" />
+    }
+}

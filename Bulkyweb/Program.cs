@@ -17,6 +17,7 @@ namespace Bulkyweb
                 options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
             builder.Services.AddScoped<ICategoryRepository,CategoryRepository>();
+            builder.Services.AddScoped<IProductsRepository, ProductsRepository>();
 
             var app = builder.Build();
 

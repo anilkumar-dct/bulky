@@ -1,0 +1,81 @@
+﻿@using Bulky.Models
+@{
+    ViewData["Title"] = "Edit Products";
+}
+@model Products
+<div class="card shadow border-0 mt-4 mb-8">
+    <div class="card-header bg-secondary bg-gradient">
+        <div class="row">
+            <div class="col-12 text-center">
+                <h2 class="text-white p-2">Edit Products</h2>
+            </div>
+        </div>
+    </div>
+    <div class="card-body p-4">
+        <form method="post">
+            @* <form method="post" asp-action="CreateCategory" asp-controller="Products"> *@
+            <div class="border p-3 mt-4">
+                @* <div asp-validation-summary="ModelOnly"></div> *@
+
+                <div class="form-floating mb-3">
+                    <input asp-for="Title" type="text" id="titleName" class="form-control border-0 shadow" placeholder="Products Title">
+                    <label asp-for="Title" for="titleName">Products Title</label>
+                    <span asp-validation-for="Title" class="text-danger"></span>
+                </div>
+
+                <div class="form-floating mb-3">
+                    <input asp-for="Description" type="text" id="Description" class="form-control border-0 shadow" placeholder="Description">
+                    <label asp-for="Description" for="Description">Description</label>
+                    <span asp-validation-for="Description" class="text-danger"></span>
+                </div>
+                <div class="form-floating mb-3">
+                    <input asp-for="ISBN" type="text" id="Description" class="form-control border-0 shadow" placeholder="ISBN">
+                    <label asp-for="ISBN" for="Description">ISBN</label>
+                    <span asp-validation-for="ISBN" class="text-danger"></span>
+                </div>
+                <div class="form-floating mb-3">
+                    <input asp-for="Author" type="text" id="Description" class="form-control border-0 shadow" placeholder="Author">
+                    <label asp-for="Author" for="Description">Author</label>
+                    <span asp-validation-for="Author" class="text-danger"></span>
+                </div>
+                <div class="form-floating mb-3">
+                    <input asp-for="ListPrice" type="number" id="Description" class="form-control border-0 shadow" placeholder="ListPrice">
+                    <label asp-for="ListPrice" for="Description">ListPrice</label>
+                    <span asp-validation-for="ListPrice" class="text-danger"></span>
+                </div>
+                <div class="form-floating mb-3">
+                    <input asp-for="Price" type="number" id="Description" class="form-control border-0 shadow" placeholder="Price">
+                    <label asp-for="Price" for="Description">Price</label>
+                    <span asp-validation-for="Price" class="text-danger"></span>
+                </div>
+                <div class="form-floating mb-3">
+                    <input asp-for="Price50" type="number" id="Description" class="form-control border-0 shadow" placeholder="Price50">
+                    <label asp-for="Price50" for="Description">Price50</label>
+                    <span asp-validation-for="Price50" class="text-danger"></span>
+                </div>
+                <div class="form-floating mb-3">
+                    <input asp-for="Price100" type="number" id="Description" class="form-control border-0 shadow" placeholder="Price100">
+                    <label asp-for="Price100" for="Description">Price100</label>
+                    <span asp-validation-for="Price100 " class="text-danger"></span>
+                </div>
+
+
+                <div class="row ">
+                    <div class="col-6 col-md-3">
+                        <button class="btn btn-primary rounded-3 w-100">Update</button>
+                    </div>
+                    <div class="col-6 col-md-3">
+                        <a asp-action="Products" asp-controller="Products" class="btn btn-outline-secondary rounded-3  w-100 text-decoration-none">Back</a>
+                    </div>
+
+                </div>
+
+            </div>
+        </form>
+    </div>
+</div>
+@section Scripts {
+    @{
+        <partial Title="_ValidationScriptsPartial" />
+    }
+}
