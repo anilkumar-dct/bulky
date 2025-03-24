@@ -57,6 +57,11 @@
                     <span asp-validation-for="Price100 " class="text-danger"></span>
                 </div>
                 <div class="form-floating mb-3">
+                    <input asp-for="imageUrl" type="number" id="Description" class="form-control border-0 shadow" placeholder="imageUrl">
+                    <label asp-for="imageUrl" for="Description">imageUrl</label>
+                    <span asp-validation-for="imageUrl " class="text-danger"></span>
+                </div>
+                <div class="form-floating mb-3">
                     <select asp-for="CategoryId" asp-items="ViewBag.CategoryList" type="number" id="Description" class="form-control border-0 shadow" >
                         <option disabled selected>--Select Category--</option>
                     </select>

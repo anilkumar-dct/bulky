@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.ComponentModel.DataAnnotations.Schema;
 using Bulky.Models.Models;
+using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
 
 namespace Bulky.Models
 {
@@ -35,8 +36,10 @@ namespace Bulky.Models
         public int CategoryId {  get; set; }
         //to Navigate we need foreign key and we have shorthand Notation for that
         [ForeignKey("CategoryId")]
+        [ValidateNever]
         public Category Category { get; set; }
         //image Url adding 
+        [ValidateNever]
         public string imageUrl {  get; set; }
     }
 }

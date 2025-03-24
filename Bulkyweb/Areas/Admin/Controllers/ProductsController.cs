@@ -132,6 +132,19 @@ namespace Bulkyweb.Areas.Admin.Controllers
             });
             ViewBag.CategoryList = CategoryList;
             return View();
+            //Both below andd above is ViewBag Method is give to show the category list item in product page
+            //NOT working this operation
+            //ProductViewModel productViewModel = new()
+            //{
+            //    CategoryList = _ICategoryRepo.GetAll().ToList().Select(u => new SelectListItem
+            //    {
+            //        Text = u.Name,
+            //        Value = u.Id.ToString()
+            //    }),
+            //    product = new Products()
+            //};
+
+            //return View(productViewModel);
         }
         [HttpPost]
         public IActionResult AddProduct(Products products)
