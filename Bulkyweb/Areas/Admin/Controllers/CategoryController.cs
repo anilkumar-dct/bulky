@@ -107,7 +107,7 @@ namespace Bulkyweb.Areas.Admin.Controllers
         //-----------------------------
         //-----------------------------
         //Database Implementation using Repository Pattern 
-        private readonly ICategoryRepository _ICategoryRepo;
+        public readonly ICategoryRepository _ICategoryRepo;
         public CategoryController(ICategoryRepository ICategoryRepo)
         {
             _ICategoryRepo = ICategoryRepo;
