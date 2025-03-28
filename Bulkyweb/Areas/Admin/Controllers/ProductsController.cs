@@ -110,12 +110,17 @@ namespace Bulkyweb.Areas.Admin.Controllers
         //-----------------------------
         //-----------------------------
         //Database Implementation using Repository Pattern 
+        private readonly IWebHostEnvironment _webHostEnvironment;
+        //When you are working with file upload then you have to capture is and store it some where in your project for ex: wwwRoot folder 
+        //And to keep the track or to access the wwwroot path to do that we need to inject WebHostEnviroment and this above we injected the WebHost Environment 
+        //and this is inbuild functionality so you don't have to worry about it, once you inject now make the change into your constructor
         private readonly IProductsRepository _IProductsRepo;
         private readonly ICategoryRepository _ICategoryRepo;
-        public ProductsController(IProductsRepository IProductsRepo,ICategoryRepository categoryRepository )
+        public ProductsController(IProductsRepository IProductsRepo,ICategoryRepository categoryRepository, IWebHostEnvironment webHostEnvironment)
         {
             _IProductsRepo = IProductsRepo;
             _ICategoryRepo = categoryRepository;
+             _webHostEnvironment= webHostEnvironment;
         }
         public IActionResult Products()
         {
@@ -147,10 +152,38 @@ namespace Bulkyweb.Areas.Admin.Controllers
             //return View(productViewModel);
         }
         [HttpPost]
-        public IActionResult AddProduct(Products products)
-        {
+        public IActionResult AddProduct(Products products,IFormFile?file)
+        {   
+
             if (ModelState.IsValid)
             {
+                //starting of file capturing syntax and storing
+                //step 1. get the file which is in "file" variable of IFormFile
+                //This WebRootPath is for path for wwwRoot file in your project.
+                string wwwRoot=_webHostEnvironment.WebRootPath;//this is to navigate to wwwroot path  that is "C:\\DOT NET\\Bulky\\Bulkyweb\\wwwroot"
+                // Now check whether file is empty or not.
+                if (file != null)
+                { 
+                    //when file is uploaded then it might have some weird name and we can assign rename to our file for the solution of it We Can you use Grid functionality
+                    string  fileName=Guid.NewGuid().ToString()+Path.GetExtension(file.FileName);//it provide you random name
+                    //Now we have also manage the file extension because above code only provide you the name and we need to keep safe the extension and to the we added the function in above code after "+" here is the name with extension "921e20f4-8e29-4bc1-93dd-d2522e95a1f0.webp"
+                    //Next step is to guide our "wwwRoot" To the wwwroot file and below the syntax is given here is the path C:\\DOT NET\\Bulky\\Bulkyweb\\wwwroot\\images\\product
+                    string productPath =Path.Combine(wwwRoot,@"images\product");
+
+                    //Now we have file with name and location
+                    //Next step is to save the file below the syntax is given
+                    //FileStream() accept full path and we need to provide that here we use path.combine to provide the path and we also have to path one more property that is fileMode 
+                    using (var fileStream = new FileStream(Path.Combine(productPath, fileName), FileMode.Create))
+                    {
+                        //Now to copy the file in our provided root we need to use 
+                        file.CopyTo(fileStream);
+                        // Now next step is to save the imageurl and we have imagurl variable in our product class and we are going to store our file in that url.
+                    }
+                    //here we provided the path as well as file name with extension that is "\\images\\product\\921e20f4-8e29-4bc1-93dd-d2522e95a1f0.webp"
+                    products.imageUrl = @"\images\product\"+fileName;
+
+                }
+
                 _IProductsRepo.Add(products);
                 _IProductsRepo.Save();
                 TempData["success"] = "Products Created Successfully";
@@ -170,6 +203,12 @@ namespace Bulkyweb.Areas.Admin.Controllers
         //Edit Products Controller 
         public IActionResult Edit(int? id)
         {
+            IEnumerable<SelectListItem> CategoryList = _ICategoryRepo.GetAll().ToList().Select(u => new SelectListItem
+            {
+                Text = u.Name,
+                Value = u.Id.ToString()
+            });
+            ViewBag.CategoryList = CategoryList;
             if (id == null || id == 0) { return NotFound(); }
             Products? products = _IProductsRepo.Get(c => c.Id == id);
             //  Products? category2 = _context.categories.Find(id);//provide value based on only primay key
@@ -179,7 +218,7 @@ namespace Bulkyweb.Areas.Admin.Controllers
         }
 
         [HttpPost]
-        public IActionResult Edit(Products products)
+        public IActionResult Edit(Products products, IFormFile? file)
 
         {
             _IProductsRepo.Update(products);
