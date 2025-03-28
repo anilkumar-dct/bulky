@@ -12,69 +12,106 @@
         </div>
     </div>
     <div class="card-body p-4">
-        <form method="post">
-            @* <form method="post" asp-action="CreateCategory" asp-controller="Products"> *@
-            <div class="border p-3 mt-4">
-                @* <div asp-validation-summary="ModelOnly"></div> *@
+        <form method="post" enctype="multipart/form-data">
+            <input asp-for="imageUrl" hidden></input>
+            <div class="row">
+                <div class="col-10">
+                    <div class="border p-3 mt-4">
+                        @* <div asp-validation-summary="ModelOnly"></div> *@
 
-                <div class="form-floating mb-3">
-                    <input asp-for="Title" type="text" id="titleName" class="form-control border-0 shadow" placeholder="Products Title">
-                    <label asp-for="Title" for="titleName">Products Title</label>
-                    <span asp-validation-for="Title" class="text-danger"></span>
-                </div>
+                        <div class="form-floating mb-3">
+                            <input asp-for="Title" type="text" id="titleName" class="form-control border-0 shadow" placeholder="Products Title">
+                            <label asp-for="Title" for="titleName">Products Title</label>
+                            <span asp-validation-for="Title" class="text-danger"></span>
+                        </div>
 
-                <div class="form-floating mb-3">
-                    <input asp-for="Description" type="text" id="Description" class="form-control border-0 shadow" placeholder="Description">
-                    <label asp-for="Description" for="Description">Description</label>
-                    <span asp-validation-for="Description" class="text-danger"></span>
-                </div>
-                <div class="form-floating mb-3">
-                    <input asp-for="ISBN" type="text" id="Description" class="form-control border-0 shadow" placeholder="ISBN">
-                    <label asp-for="ISBN" for="Description">ISBN</label>
-                    <span asp-validation-for="ISBN" class="text-danger"></span>
-                </div>
-                <div class="form-floating mb-3">
-                    <input asp-for="Author" type="text" id="Description" class="form-control border-0 shadow" placeholder="Author">
-                    <label asp-for="Author" for="Description">Author</label>
-                    <span asp-validation-for="Author" class="text-danger"></span>
-                </div>
-                <div class="form-floating mb-3">
-                    <input asp-for="ListPrice" type="number" id="Description" class="form-control border-0 shadow" placeholder="ListPrice">
-                    <label asp-for="ListPrice" for="Description">ListPrice</label>
-                    <span asp-validation-for="ListPrice" class="text-danger"></span>
-                </div>
-                <div class="form-floating mb-3">
-                    <input asp-for="Price" type="number" id="Description" class="form-control border-0 shadow" placeholder="Price">
-                    <label asp-for="Price" for="Description">Price</label>
-                    <span asp-validation-for="Price" class="text-danger"></span>
-                </div>
-                <div class="form-floating mb-3">
-                    <input asp-for="Price50" type="number" id="Description" class="form-control border-0 shadow" placeholder="Price50">
-                    <label asp-for="Price50" for="Description">Price50</label>
-                    <span asp-validation-for="Price50" class="text-danger"></span>
-                </div>
-                <div class="form-floating mb-3">
-                    <input asp-for="Price100" type="number" id="Description" class="form-control border-0 shadow" placeholder="Price100">
-                    <label asp-for="Price100" for="Description">Price100</label>
-                    <span asp-validation-for="Price100 " class="text-danger"></span>
-                </div>
+                        <div class="form-floating mb-3">
+                            <label asp-for="Description" for="Description">Description</label>
+                            <textarea asp-for="Description" type="text" id="Description" class="form-control border-0 shadow" placeholder="Description"></textarea>
+                        </div>
+                        <div class="form-floating mb-3">
+                            <input asp-for="ISBN" type="text" id="Description" class="form-control border-0 shadow" placeholder="ISBN">
+                            <label asp-for="ISBN" for="Description">ISBN</label>
+                            <span asp-validation-for="ISBN" class="text-danger"></span>
+                        </div>
+                        <div class="form-floating mb-3">
+                            <input asp-for="Author" type="text" id="Description" class="form-control border-0 shadow" placeholder="Author">
+                            <label asp-for="Author" for="Description">Author</label>
+                            <span asp-validation-for="Author" class="text-danger"></span>
+                        </div>
+                        <div class="form-floating mb-3">
+                            <input asp-for="ListPrice" type="number" id="Description" class="form-control border-0 shadow" placeholder="ListPrice">
+                            <label asp-for="ListPrice" for="Description">ListPrice</label>
+                            <span asp-validation-for="ListPrice" class="text-danger"></span>
+                        </div>
+                        <div class="form-floating mb-3">
+                            <input asp-for="Price" type="number" id="Description" class="form-control border-0 shadow" placeholder="Price">
+                            <label asp-for="Price" for="Description">Price</label>
+                            <span asp-validation-for="Price" class="text-danger"></span>
+                        </div>
+                        <div class="form-floating mb-3">
+                            <input asp-for="Price50" type="number" id="Description" class="form-control border-0 shadow" placeholder="Price50">
+                            <label asp-for="Price50" for="Description">Price50</label>
+                            <span asp-validation-for="Price50" class="text-danger"></span>
+                        </div>
+                        <div class="form-floating mb-3">
+                            <input asp-for="Price100" type="number" id="Description" class="form-control border-0 shadow" placeholder="Price100">
+                            <label asp-for="Price100" for="Description">Price100</label>
+                            <span asp-validation-for="Price100 " class="text-danger"></span>
+                        </div>
+                        <div class="form-floating mb-3">
+                            <input name="file" type="file" id="file" class="form-control border-0 shadow" placeholder="imageUrl">
+                            <label asp-for="imageUrl" for="imageUrl">imageUrl</label>
+                            <span asp-validation-for="imageUrl " class="text-danger"></span>
+                        </div>
+                        <div class="form-floating mb-3">
+                            <select asp-for="CategoryId" asp-items="ViewBag.CategoryList" type="number" id="Description" class="form-control border-0 shadow">
+                                <option disabled selected>Category</option>
+                            </select>
+                        </div>
 
+                        <div class="row ">
+                            <div class="col-6 col-md-3">
+                                <button class="btn btn-primary rounded-3 w-100">Update</button>
+                            </div>
+                            <div class="col-6 col-md-3">
+                                <a asp-action="Products" asp-controller="Products" class="btn btn-outline-secondary rounded-3  w-100 text-decoration-none">Back</a>
+                            </div>
 
-                <div class="row ">
-                    <div class="col-6 col-md-3">
-                        <button class="btn btn-primary rounded-3 w-100">Update</button>
+                        </div>
+
                     </div>
-                    <div class="col-6 col-md-3">
-                        <a asp-action="Products" asp-controller="Products" class="btn btn-outline-secondary rounded-3  w-100 text-decoration-none">Back</a>
-                    </div>
-
                 </div>
-
+                <div class="col-2">
+                    <img src="@Model.imageUrl" width="100%" alt="Alternate Text" />
+                </div>
             </div>
+            @* <form method="post" asp-action="CreateCategory" asp-controller="Products"> *@
+           
         </form>
     </div>
 </div>
 @section Scripts {
+    <script>
+        tinymce.init({
+          selector: 'textarea',
+          plugins: [
+            // Core editing features
+            'anchor', 'autolink', 'charmap', 'codesample', 'emoticons', 'image', 'link', 'lists', 'media', 'searchreplace', 'table', 'visualblocks', 'wordcount',
+            // Your account includes a free trial of TinyMCE premium features
+            // Try the most popular premium features until Apr 11, 2025:
+            'checklist', 'mediaembed', 'casechange', 'formatpainter', 'pageembed', 'a11ychecker', 'tinymcespellchecker', 'permanentpen', 'powerpaste', 'advtable', 'advcode', 'editimage', 'advtemplate', 'ai', 'mentions', 'tinycomments', 'tableofcontents', 'footnotes', 'mergetags', 'autocorrect', 'typography', 'inlinecss', 'markdown','importword', 'exportword', 'exportpdf'
+          ],
+          toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table mergetags | addcomment showcomments | spellcheckdialog a11ycheck typography | align lineheight | checklist numlist bullist indent outdent | emoticons charmap | removeformat',
+          tinycomments_mode: 'embedded',
+          tinycomments_author: 'Author name',
+          mergetags_list: [
+            { value: 'First.Name', title: 'First Name' },
+            { value: 'Email', title: 'Email' },
+          ],
+          ai_request: (request, respondWith) => respondWith.string(() => Promise.reject('See docs to implement AI Assistant')),
+        });
+    </script>
     @{
         <partial Title="_ValidationScriptsPartial" />
     }

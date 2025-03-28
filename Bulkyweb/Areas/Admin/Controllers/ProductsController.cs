@@ -219,8 +219,40 @@ namespace Bulkyweb.Areas.Admin.Controllers
 
         [HttpPost]
         public IActionResult Edit(Products products, IFormFile? file)
-
         {
+            if (ModelState.IsValid)
+            {
+                string wwwRoot = _webHostEnvironment.WebRootPath;
+
+                if (file != null)
+                {
+                    string fileName = Guid.NewGuid().ToString() + Path.GetExtension(file.FileName);
+                    string productPath = Path.Combine(wwwRoot, @"images\product");
+
+                    //Deteting Old image method
+                    if (!string.IsNullOrEmpty(products.imageUrl))
+                    {
+                        //delete old imageurl
+                        var OldImagePath = Path.Combine(wwwRoot, products.imageUrl.TrimStart('\\'));//This will get the old file
+
+                        //finally deleted the image
+                        if (System.IO.File.Exists(OldImagePath))
+                        {
+                            System.IO.File.Delete(OldImagePath);
+                        }
+
+                    }
+                    //getting new image address here
+                    using (var fileStream = new FileStream(Path.Combine(productPath, fileName), FileMode.Create))
+                    {
+                        file.CopyTo(fileStream);
+                    }
+
+                    products.imageUrl = @"\images\product\" + fileName;
+                }
+            }
+
+
             _IProductsRepo.Update(products);
             _IProductsRepo.Save();
             TempData["success"] = "Products Updated Successfully";
