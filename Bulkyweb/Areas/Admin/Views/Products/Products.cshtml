@@ -26,23 +26,24 @@
                 <table class="table table-bordered table-striped">
                     <thead>
                         <tr>
-                            <th>Products Title</th>
-                            <th>Author</th>
+                        <th>Products Title</th>
+                        <th>Author</th>
                         <th>ISBN</th>
                         <th>Price</th>
                         <th>Category</th>
-                        <th></th>
+                        <th>Actions</th>
                         </tr>
                     </thead>
                     <tbody>
                         @foreach (var data in Model.OrderBy(u => u.Description))
                         {
                             <tr>
-                                <td>@data.Title</td>
+                            <td>@data.Title</td>
                             <td>@data.Author</td>
+                            <td>@data.ISBN</td>
                             <td>@data.ListPrice</td>
-                            <td>@data.CategoryId</td>
-                            <td></td>
+                            <td>@data.Category.Name</td>
+                           
                                 <td>
                                     <div class="w-75 btn-group d-flex justify-content-center">
                                         <a class="btn btn-primary rounded-2 btn-sm m-1" asp-controller="Products" asp-action="Edit" asp-route-id="@data.Id">

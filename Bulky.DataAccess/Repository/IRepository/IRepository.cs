@@ -17,14 +17,14 @@ namespace Bulky.DataAccess.Repository.IRepository
         /// Retrieves all records of type T from the database.
         /// </summary>
         /// <returns>Returns an IEnumerable of T.</returns>
-        IEnumerable<T> GetAll();
+        IEnumerable<T> GetAll(string? includeCategory = null);
 
         /// <summary>
         /// Retrieves a single record based on a specified filter condition.
         /// </summary>
         /// <param name="filter">Lambda expression for filtering data (e.g., c => c.Id == 1)</param>
         /// <returns>Returns a single object of type T if found, otherwise null.</returns>
-        T Get(Expression<Func<T, bool>> filter);
+        T Get(Expression<Func<T, bool>> filter, string? includeCategory = null);
 
         /// <summary>
         /// Adds a new record of type T to the database.

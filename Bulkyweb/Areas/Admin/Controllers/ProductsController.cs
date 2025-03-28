@@ -124,7 +124,7 @@ namespace Bulkyweb.Areas.Admin.Controllers
         }
         public IActionResult Products()
         {
-            var objProductsList = _IProductsRepo.GetAll().ToList();
+            var objProductsList = _IProductsRepo.GetAll(includeCategory:"Category").ToList();
            
             return View(objProductsList);
         }

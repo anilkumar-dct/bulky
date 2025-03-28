@@ -17,23 +17,34 @@ namespace Bulky.DataAccess.Repository.IRepository
         {
             _context = context;
             this.DbSet =_context.Set<T>();
-            //_db.Categories=Dbset;         
+            //_db.Categories=Dbset;
+            _context.products.Include(u => u.Category);
+            //you can also add multiple properties as well in above syntax given below
+            //_context.products.Include(u => u.Category).Include(u => u.CategoryId);
         }
         public void Add(T item)
         {
             DbSet.Add(item);
         }
-
-        public T Get(Expression<Func<T, bool>> filter)
+        //for getting the properties of category we used includeCategory in below method as parameter
+        public T Get(Expression<Func<T, bool>> filter, string? includeCategory = null)
         {
             IQueryable<T> query = DbSet;
             query= query.Where(filter);
+            if (!string.IsNullOrEmpty(includeCategory))
+            {
+                query = query.Include(includeCategory);
+            }
             return query.FirstOrDefault();
         }
 
-        public IEnumerable<T> GetAll()
+        public IEnumerable<T> GetAll(string? includeCategory=null)
         {
            IQueryable<T> query = DbSet;
+            if (!string.IsNullOrEmpty(includeCategory))
+            {
+                query = query.Include(includeCategory);
+            }
             return query.ToList();
         }
 
