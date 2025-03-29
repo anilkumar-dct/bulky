@@ -258,7 +258,9 @@ namespace Bulkyweb.Areas.Admin.Controllers
             TempData["success"] = "Products Updated Successfully";
             return RedirectToAction("Products");
         }
-        //Delete with view
+        //Delete with view 
+        //Previous Comments are which is with no dates
+        //Today 29 march below code not required becauce we used sweet alert 
         public IActionResult Delete(int? id)
         {
             if (id == null || id == 0) { return NotFound(); }
@@ -287,6 +289,48 @@ namespace Bulkyweb.Areas.Admin.Controllers
             var objProductsList = _IProductsRepo.GetAll(includeCategory: "Category").ToList();
 
             return Json(new { data = objProductsList });
+        }
+
+        [HttpDelete]
+        public IActionResult DeleteWithAlert(int? id)
+        {
+            try
+            {
+                var productToDelete = _IProductsRepo.Get(u => u.Id == id);
+                if (productToDelete == null)
+                {
+                    return Json(new { success = false, message = "Product not found" });
+                }
+
+                // Delete image if exists
+                if (!string.IsNullOrEmpty(productToDelete.imageUrl))
+                {
+                    var imagePath = Path.Combine(_webHostEnvironment.WebRootPath,
+                        productToDelete.imageUrl.TrimStart('\\'));
+                    if (System.IO.File.Exists(imagePath))
+                    {
+                        System.IO.File.Delete(imagePath);
+                    }
+                }
+
+                _IProductsRepo.Remove(productToDelete);
+                _IProductsRepo.Save();
+
+                return Json(new
+                {
+                    success = true,
+                    message = "Product deleted successfully"
+                });
+            }
+            catch (Exception ex)
+            {
+                return Json(new
+                {
+                    success = false,
+                    message = $"Error deleting product: {ex.Message}"
+                });
+            }
+
         }
         #endregion
         //Delete Products controller CREATED by own 
