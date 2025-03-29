@@ -280,7 +280,15 @@ namespace Bulkyweb.Areas.Admin.Controllers
             TempData["success"] = "Products Deleted Successfully";
             return RedirectToAction("Products");
         }
+        #region API CALLS
+        [HttpGet]
+        public IActionResult GetAll()
+        {
+            var objProductsList = _IProductsRepo.GetAll(includeCategory: "Category").ToList();
 
+            return Json(new { data = objProductsList });
+        }
+        #endregion
         //Delete Products controller CREATED by own 
         //public IActionResult Delete(int? id)
         //{

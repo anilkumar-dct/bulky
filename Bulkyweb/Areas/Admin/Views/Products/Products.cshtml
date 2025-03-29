@@ -23,7 +23,7 @@
             </div>
 
             <div class="table-responsive">
-                <table class="table table-bordered table-striped">
+            <table id="tbltable" class="table table-bordered table-striped">
                     <thead>
                         <tr>
                         <th>Products Title</th>
@@ -34,33 +34,36 @@
                         <th>Actions</th>
                         </tr>
                     </thead>
-                    <tbody>
-                        @foreach (var data in Model.OrderBy(u => u.Description))
-                        {
-                            <tr>
-                            <td>@data.Title</td>
-                            <td>@data.Author</td>
-                            <td>@data.ISBN</td>
-                            <td>@data.ListPrice</td>
-                            <td>@data.Category.Name</td>
+                    @* No Longer required because using the functionality of DataTable Date : 29 march 2025 *@
+                    @* <tbody> *@
+                    @*     @foreach (var data in Model.OrderBy(u => u.Description)) *@
+                    @*     { *@
+                    @*         <tr> *@
+                    @*         <td>@data.Title</td> *@
+                    @*         <td>@data.Author</td> *@
+                    @*         <td>@data.ISBN</td> *@
+                    @*         <td>@data.ListPrice</td> *@
+                    @*         <td>@data.Category.Name</td> *@
                            
-                                <td>
-                                    <div class="w-75 btn-group d-flex justify-content-center">
-                                        <a class="btn btn-primary rounded-2 btn-sm m-1" asp-controller="Products" asp-action="Edit" asp-route-id="@data.Id">
-                                            <i class="bi bi-pencil-square"></i> Edit
-                                        </a>
-                                        <a class="btn btn-danger rounded-2 btn-sm m-1" asp-controller="Products" asp-action="Delete" asp-route-id="@data.Id">
-                                            <i class="bi bi-trash3"></i> Delete
-                                        </a>
-                                    </div>
-                                </td>
-                            </tr>
-                        }
-                    </tbody>
+                    @*             <td> *@
+                    @*                 <div class="w-75 btn-group d-flex justify-content-center"> *@
+                    @*                     <a class="btn btn-primary rounded-2 btn-sm m-1" asp-controller="Products" asp-action="Edit" asp-route-id="@data.Id"> *@
+                    @*                         <i class="bi bi-pencil-square"></i> Edit *@
+                    @*                     </a> *@
+                    @*                     <a class="btn btn-danger rounded-2 btn-sm m-1" asp-controller="Products" asp-action="Delete" asp-route-id="@data.Id"> *@
+                    @*                         <i class="bi bi-trash3"></i> Delete *@
+                    @*                     </a> *@
+                    @*                 </div> *@
+                    @*             </td> *@
+                    @*         </tr> *@
+                    @*     } *@
+                    @* </tbody> *@
                 </table>
             </div>
         </div>
    
 </div>
-
+@section Scripts{
+    <script src="~/js/Product.js"></script>
+}
 
