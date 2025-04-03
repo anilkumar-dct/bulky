@@ -1,8 +1,42 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
+﻿@using Bulky.Models
+@model IEnumerable<Products>
+@if (Model != null && Model.Any())
+{
+    <div class="row pb-3">
+        @foreach (var data in Model)
+        {
+            <div class="col-lg-3 col-sm-6">
+                @* Fixed "col-log-3" typo *@
+                <div class="row p-2">
+                    <div class="col-12 p-1">
+                        <div class="card border-0 p-3 shadow border-top border-5 rounded">
+                            <img src="@data.imageUrl" class="card-img-top rounded" alt="Product Image" />
+                            <div class="card-body pb-0">
+                                <div class="pl-1">
+                                    <p class="cardcard-title h6 text-dark opacity-75 text-uppercase text-center">@data.Title
+                                    </p>
+                                    <p class="cardcard-title h6  text-warning opacity-75 text-uppercase text-center">
+                                        @data.Author
+                                    </p>
+                                </div>
+                                <div class="pl-1">
+                                    <p class="cardcard-title text-opacity-75 text-center">Listed Price: <span>@data.ListPrice.ToString("c")</span>
+                                    </p>
+                                </div>
+                                <div class="pl-1">
+                                    <p class="cardcard-title text-opacity-75 text-center">
+                                        Lowest: <span>@data.Price100.ToString("c")</span>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
 }
-
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+else
+{
+    <p class="text-muted">No products available.</p>
+}
